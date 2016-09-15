@@ -32,8 +32,14 @@
         means that the controller's alias within the HTML will be
         albumsIndexCtrl-->
     <div class="container" ng-controller="AlbumsIndexController as albumsIndexCtrl">
-      <input type="text" class="form-control" placeholder="New album name" ng-model="albumsIndexCtrl.newAlbum.name">
-      <input type="text" class="form-control" placeholder="New album artist" ng-model="albumsIndexCtrl.newAlbum.artistName">
+      
+      <form ng-submit="albumsIndexCtrl.createAlbum()">
+        <input type="text" class="form-control" placeholder="New album name" ng-model="albumsIndexCtrl.newAlbum.name">
+        <input type="text" class="form-control" placeholder="New album artist" ng-model="albumsIndexCtrl.newAlbum.artistName">
+        <input type="submit">
+      </form>
+      
+
       <p><b>albumsIndexCtrl.newAlbum:</b> {{albumsIndexCtrl.newAlbum}}</p>
       <input type="text" class="form-control" ng-model="searchText" placeholder="Search Albums">
       <div ng-repeat="album in albumsIndexCtrl.albums | orderBy: 'name' | filter: searchText" class="row">
