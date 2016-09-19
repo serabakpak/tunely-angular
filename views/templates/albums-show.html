@@ -5,9 +5,9 @@
         <div class="col-md-10 col-md-offset-1">
           <div class="panel panel-default">
             <div class="panel-body">
-              <div class='row'>
+              <div class="row">
                 <div class="col-md-3 col-xs-12 thumbnail">
-                  <img src="images/800x800.png" alt="album image">
+                  <img ng-src="../../public/images/800x800.png" alt="album image">
                 </div>
 
                 <div class="col-md-9 col-xs-12">
@@ -30,8 +30,27 @@
                     <li class="list-group-item">
                       <h4 class="inline-header">Songs:</h4>
                       <div class="list-group-item" ng-repeat="song in albumsShowCtrl.album.songs">
-                        ({{song.trackNumber}}){{song.name}}
+                        <button id="update-btn" ng-click="editing = true" class="btn btn-info" ng-hide="editing">
+                          <span class="glyphicon glyphicon-pencil"></span>
+                        </button>
+                        <button id="delete-btn" class="btn btn-danger" ng-hide="editing" ng-click="albumsShowCtrl.deleteSong(song)">
+                          <span class="glyphicon glyphicon-trash"></span>
+                        </button>
+                        <button id="save-btn" class="btn btn-success" ng-show="editing"  ng-click="albumsShowCtrl.editSong(song); editing=false">
+                          <span class="glyphicon glyphicon-ok" >Save</span>
+                        </button>
+                        <span ng-hide="editing">({{song.trackNumber}}){{song.name}}</span>
+                        <input ng-show="editing" ng-model="song.name">
                       </div>
+                    </li>
+                    <li class="list-group-item">
+                      <input placeholder="Track Number" class="form-control input-md" ng-model="albumsShowCtrl.newSong.trackNumber">
+                      <input placeholder="Track Name"  class="form-control input-md" ng-model="albumsShowCtrl.newSong.name">
+                      <br>
+                      <button class="btn btn-success" ng-click="albumsShowCtrl.createSong()"><span class="glyphicon glyphicon-plus" ></span>Add New Song</button>
+
+
+
                     </li>
                   </ul>
                 </div>
